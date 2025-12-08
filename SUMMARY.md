@@ -16,6 +16,7 @@
 * [Содержание](hackthebox-writeups/soderzhanie.md)
 * [🐧 Linux](hackthebox-writeups/linux/README.md)
   * [🟩 Easy](hackthebox-writeups/linux/easy/README.md)
+    * [CozyHosting (2025)](hackthebox-writeups/linux/easy/cozyhosting-2025.md)
     * [Dog (2025)](hackthebox-writeups/linux/easy/dog-2025.md)
     * [Editorial (2025)](hackthebox-writeups/linux/easy/editorial-2025.md)
     * [Keeper (2025)](hackthebox-writeups/linux/easy/keeper-2025.md)
@@ -26,6 +27,7 @@
     * [Nunchucks (2021)](hackthebox-writeups/linux/easy/nunchucks-2021.md)
     * [Прохождение Hackthebox::Lame](hackthebox-writeups/linux/easy/prokhozhdenie-hackthebox-lame.md)
   * [🟨 Medium](hackthebox-writeups/linux/medium/README.md)
+    * [Builder (2025)](hackthebox-writeups/linux/medium/builder-2025.md)
     * [Ransom (2022)](hackthebox-writeups/linux/medium/ransom-2022.md)
     * [Shibboleth (2022)](hackthebox-writeups/linux/medium/shibboleth-2022.md)
     * [Seal (2021)](hackthebox-writeups/linux/medium/seal-2021.md)
@@ -46,6 +48,7 @@
     * [HTB Blue](hackthebox-writeups/windows/easy/htb-blue.md)
   * [🟨 Medium](hackthebox-writeups/windows/medium/README.md)
     * [Puppy (2025)](hackthebox-writeups/windows/medium/puppy-2025.md)
+    * [Escape (2025)](hackthebox-writeups/windows/medium/escape-2025.md)
   * [🟥 Hard](hackthebox-writeups/windows/hard.md)
   * [⬜ Insane](hackthebox-writeups/windows/insane.md)
 
