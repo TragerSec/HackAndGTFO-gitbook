@@ -16,6 +16,7 @@
 * [Содержание](hackthebox-writeups/soderzhanie.md)
 * [🐧 Linux](hackthebox-writeups/linux/README.md)
   * [🟩 Easy](hackthebox-writeups/linux/easy/README.md)
+    * [Writeup (2025)](hackthebox-writeups/linux/easy/writeup-2025.md)
     * [CozyHosting (2025)](hackthebox-writeups/linux/easy/cozyhosting-2025.md)
     * [Dog (2025)](hackthebox-writeups/linux/easy/dog-2025.md)
     * [Editorial (2025)](hackthebox-writeups/linux/easy/editorial-2025.md)
