@@ -115,7 +115,7 @@ set SHARE_NAME shared
 run
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * **Запуск `SMB`-сервера**
 
@@ -133,11 +133,11 @@ run
 impacket-smbclient 'fluffy.htb/j.fleischman'@DC01
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Спустя некоторое время появится хеш пользователя `p.agila`:
 
-<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Сбрутить его можно с помощью утилиты `hashcat`:
 
@@ -145,7 +145,7 @@ impacket-smbclient 'fluffy.htb/j.fleischman'@DC01
 sudo hashcat -m 5600 agila_hash /usr/share/wordlists/rockyou.txt
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Проверка валидности пароля через `nxc` (`Password Spraying`):
 

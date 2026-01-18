@@ -1,6 +1,6 @@
 # Altered (2022)
 
-![](<../../../.gitbook/assets/image (4) (1) (1).png>)
+![](<../../../.gitbook/assets/image (4) (1) (1) (1).png>)
 
 ### Содержание:
 
@@ -70,7 +70,7 @@ wfuzz -H 'Cookie: XSRF-TOKEN=eyJpdiI6InlZZUE4bUkvODdaL2s5UHVHYVYzenc9PSIsInZhbHV
 
 При клике на ссылку **view** у нас образуется **GET-запрос** с двумя параметрами **id** и **secret**:
 
-![](<../../../.gitbook/assets/image (3) (1) (1).png>)
+![](<../../../.gitbook/assets/image (3) (1) (1) (1).png>)
 
 ### Обходим фильтры и эксплуатируем SQLi:
 
@@ -99,7 +99,7 @@ Content-Length: 60
 
 ![](<../../../.gitbook/assets/image (11) (1) (1).png>)
 
-![](<../../../.gitbook/assets/image (1) (1) (1).png>)
+![](<../../../.gitbook/assets/image (1) (1) (1) (1).png>)
 
 Далее я просто раскрутил **UNION SQLi**([о ней я тоже сделал статью](https://tragernout.gitbook.io/hackandgtfo/owasp-top-10/sql-union-injection)):
 
@@ -109,7 +109,7 @@ Content-Length: 60
 
 * Смотрим какие есть базы данных:
 
-![](<../../../.gitbook/assets/image (2) (1) (1).png>)
+![](<../../../.gitbook/assets/image (2) (1) (1) (1).png>)
 
 ```
 {

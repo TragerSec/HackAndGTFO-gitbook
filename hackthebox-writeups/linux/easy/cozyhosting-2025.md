@@ -32,11 +32,11 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 На `80` порту располагается страница с описанием веб-сайта:
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure></div>
 
 И кнопка ведущая на страницу авторизации:
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 Профаззив директории и файлы был обнаружен эндпоинт /actuator:
 
@@ -78,11 +78,11 @@ actuator                [Status: 200, Size: 634, Words: 1, Lines: 1, Duration: 1
 
 С помощью него можно получить больше информации для дальнейшей эксплуатации:
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 На эндпоинте `/actuator/sessions` была обнаружена сессия пользователя `kanderson`:
 
-<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure></div>
+<div data-with-frame="true"><figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 После замены `Cookie JSESSIONID` можно авторизоваться на ресурсе обновив страницу входа (`CTRL + R`):
 
