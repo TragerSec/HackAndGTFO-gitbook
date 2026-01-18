@@ -7,9 +7,9 @@ icon: comments-question
 GitBook:
 
 * [Nunchucks (Linux, Easy)](linux/easy/nunchucks-2021.md)
-* [Jerry (Windows, Easy)](windows/easy/jerry.md)
+* [Jerry (Windows, Easy)](windows/easy/jerry-2022.md)
 * [Lame (Linux, Easy)](linux/easy/lame-2022.md)
-* [Netmon (Windows, Easy)](windows/easy/netmon.md)
+* [Netmon (Windows, Easy)](windows/easy/netmon-2022.md)
 * [Stacked (Linux, Insane)](linux/insane/stacked-2022.md)
 * [Altered (Linux, Hard)](linux/hard/altered-2022.md)
 
