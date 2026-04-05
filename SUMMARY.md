@@ -4,7 +4,7 @@
 
 ## CV
 
-* [🧾 About me](cv/about-me.md)
+* [🧾 Whoami](cv/whoami.md)
 
 ## Pentest Notes
 
