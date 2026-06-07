@@ -15,6 +15,8 @@ layout:
     visible: true
   tags:
     visible: true
+  actions:
+    visible: true
 ---
 
 # 🧾 Whoami
@@ -91,7 +93,7 @@ Work tasks: ...will be added later...
 **Bachelor's Degree:** [St. Petersburg State University of Telecommunications named after prof. M.A. Bonch-Bruevich](https://www.sut.ru/) - Computer Systems Security (_2021 / 2025_).
 {% endhint %}
 
-<table data-full-width="false"><thead><tr><th width="93" align="center">Year</th><th width="415.5">Certification</th><th width="179.5" align="center">Company</th></tr></thead><tbody><tr><td align="center">2026</td><td><strong>OSCP</strong><br>Offensive Security Certified Professional</td><td align="center">Offsec</td></tr><tr><td align="center">2025</td><td><strong>ADPT</strong><br>Security assessment of infrastructure based on Active Directory technologies</td><td align="center">Codeby</td></tr><tr><td align="center">2024</td><td><strong>AL-1701</strong><br>"OS Astra Linux Special Edition 1.7 for users"</td><td align="center">Astra Linux</td></tr><tr><td align="center">2020</td><td>Network Security. Specialist.</td><td align="center">Specialist.ru</td></tr><tr><td align="center">2020</td><td>Fundamentals of Networks and Network Operating Systems. Advanced User.</td><td align="center">Specialist.ru</td></tr><tr><td align="center">2019</td><td>Security analysis of web projects</td><td align="center">Mail.ru</td></tr></tbody></table>
+<table data-full-width="false"><thead><tr><th width="93" align="center">Year</th><th width="415.5">Certification</th><th width="179.5" align="center">Company</th></tr></thead><tbody><tr><td align="center">2026</td><td><strong>AASA</strong><br>Android Application Security Analysis</td><td align="center">Codeby</td></tr><tr><td align="center">2026</td><td><strong>OSCP</strong><br>Offensive Security Certified Professional</td><td align="center">Offsec</td></tr><tr><td align="center">2025</td><td><strong>ADPT</strong><br>Security assessment of infrastructure based on Active Directory technologies</td><td align="center">Codeby</td></tr><tr><td align="center">2024</td><td><strong>AL-1701</strong><br>"OS Astra Linux Special Edition 1.7 for users"</td><td align="center">Astra Linux</td></tr><tr><td align="center">2020</td><td>Network Security. Specialist.</td><td align="center">Specialist.ru</td></tr><tr><td align="center">2020</td><td>Fundamentals of Networks and Network Operating Systems. Advanced User.</td><td align="center">Specialist.ru</td></tr><tr><td align="center">2019</td><td>Security analysis of web projects</td><td align="center">Mail.ru</td></tr></tbody></table>
 
 ## <mark style="color:$primary;">CTF Competitions</mark>
 
