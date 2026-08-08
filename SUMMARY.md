@@ -13,7 +13,7 @@
 
 ## HackTheBox Writeups
 
-* [Содержание](hackthebox-writeups/soderzhanie.md)
+* [Contents](hackthebox-writeups/contents.md)
 * [🐧 Linux](hackthebox-writeups/linux/README.md)
   * [🟩 Easy](hackthebox-writeups/linux/easy/README.md)
     * [Writeup (2025)](hackthebox-writeups/linux/easy/writeup-2025.md)

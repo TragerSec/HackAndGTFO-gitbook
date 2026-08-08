@@ -2,7 +2,7 @@
 icon: comments-question
 ---
 
-# Содержание
+# Contents
 
 GitBook:
 
@@ -15,7 +15,7 @@ GitBook:
 
 
 
-Codeby.net:
+Codeby.net Forum:
 
 * [Broker (Linux, Easy)](https://codeby.net/threads/proxozhdenie-hackthebox-broker-linux-easy.82786/)
 * [Precious (Linux, Easy)](https://codeby.net/threads/proxozhdenie-hackthebox-precious-linux-easy.81530/)
